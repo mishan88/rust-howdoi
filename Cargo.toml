@@ -1,0 +1,13 @@
+[package]
+name = "rust-howdoi"
+version = "0.1.0"
+authors = ["mishan88 <mishanhideaki88@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+reqwest = "*"
+clap = "*"
+termcolor = "*"
+regex = "*"
+scraper = "*"
+url = "*"
