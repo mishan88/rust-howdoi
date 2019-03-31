@@ -11,6 +11,12 @@ fn create_url(s: &str) -> String {
     format!("{}{}", url, Cow::Borrowed(&query))
 }
 
+#[test]
+fn test_create_url() {
+    let url = create_url("rust install");
+    assert_eq!(url, "https://www.google.com/search?q=site:stackoverflow.com%20rust+install".to_owned());
+}
+
 fn get_text(url: &str) -> Result<String, reqwest::Error> {
     let client = Client::new();
     let res = client.get(url)
@@ -67,7 +73,8 @@ fn main() {
             .default_value("1")
         );
     let matches = app.get_matches();
-    let q = create_url("unpack tar");
+    let search_query = matches.value_of("query").unwrap();
+    let q = create_url(&search_query);
     let response = get_text(&q);
     let html = match response {
         Ok(n) => n,
